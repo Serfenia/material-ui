@@ -7,9 +7,9 @@ function getStyles(props, context, state) {
   if (props.hovered || state.hovered) {
     cellBgColor = tableRow.hoverColor;
   } else if (props.selected) {
-    cellBgColor = tableRow.selectedColor;
+    cellBgColor = props.selectedColor || tableRow.selectedColor;
   } else if (props.striped) {
-    cellBgColor = tableRow.stripeColor;
+    cellBgColor = props.stripeColor || tableRow.stripeColor;
   }
 
   return {
@@ -105,6 +105,16 @@ class TableRow extends Component {
      */
     selected: PropTypes.bool,
     /**
+     * The background color for a row that is selected.
+     * This property can be used to set the background color of a table row that is selected.
+     */
+    selectedColor: PropTypes.string,
+    /**
+     * The stripe color for a row that is striped.
+     * This property can be used to set the background color of a table row that is striped.
+     */
+    stripeColor: PropTypes.string,
+    /**
      * Indicates whether or not the row is striped.
      */
     striped: PropTypes.bool,
@@ -120,6 +130,8 @@ class TableRow extends Component {
     hovered: false,
     selectable: true,
     selected: false,
+    selectedColor: null,
+    stripeColor: null,
     striped: false,
   };
 
@@ -181,6 +193,8 @@ class TableRow extends Component {
       rowNumber, // eslint-disable-line no-unused-vars
       selectable, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
+      selectedColor, // eslint-disable-line no-unused-vars
+      stripeColor, // eslint-disable-line no-unused-vars
       striped, // eslint-disable-line no-unused-vars
       style,
       ...other,
